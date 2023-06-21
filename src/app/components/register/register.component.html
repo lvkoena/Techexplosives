@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="heading">
+        <h2 class="heading">Create an Account</h2>
+    </div>
+    <div class="card">
+        <form [formGroup] = "registerForm" (ngSubmit) = "onSubmit()">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" class="form-control"
+            formControlName="name">
+
+            <div class="form-text text-danger" *ngIf="firstName.errors?.['required'] && (firstName.touched || firstName.dirty)">
+                First Name is required.
+            </div>
+            <div class="form-text text-danger" *ngIf="firstName.errors?.['minlength'] && (firstName.touched || firstName.dirty)">
+                First Name is too short.
+            </div>
+            <div class="form-text text-danger" *ngIf="firstName.errors?.['pattern'] && (firstName.touched || firstName.dirty)">
+                First Name should start with alphabets
+            </div>
+            <button type="submit" [disabled]="registerForm.invalid" class="btn btn-success">Register</button>
+        </form>
+    </div>
+</div>
