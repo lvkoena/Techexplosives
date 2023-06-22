@@ -6,18 +6,72 @@
         <form [formGroup] = "registerForm" (ngSubmit) = "onSubmit()">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" class="form-control"
-            formControlName="name">
+            formControlName="firstName">
 
             <div class="form-text text-danger" *ngIf="firstName.errors?.['required'] && (firstName.touched || firstName.dirty)">
                 First Name is required.
             </div>
+
             <div class="form-text text-danger" *ngIf="firstName.errors?.['minlength'] && (firstName.touched || firstName.dirty)">
                 First Name is too short.
             </div>
+
             <div class="form-text text-danger" *ngIf="firstName.errors?.['pattern'] && (firstName.touched || firstName.dirty)">
-                First Name should start with alphabets
+                First Name should start with alphabets.
             </div>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" class="form-control" formControlName="lastName">
+
+            <div class="form-text text-danger" *ngIf="lastName.errors?.['required'] && (lastName.touched || lastName.dirty)">
+                Last name is required.
+            </div>
+
+            <div class="form-text text-danger" *ngIf="lastName.errors?.['minlength'] && (lastName.touched || lastName.dirty)">
+                lastName is too short.
+           </div>
+
+           <div class="form-text text-danger" *ngIf="lastName.errors?.['pattern'] && (lastName.dirty || lastName.touched)">
+            lastName should start with an Alphabet. 
+           </div>
+
+           <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" formControlName="email">
+
+            <div class="form-text text-danger" *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">
+                Email is required.
+            </div>
+
+            <div class="form-text text-danger" *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">
+                Email is invalid.
+            </div>
+
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+
+            <div class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.dirty || password.touched)">
+                Password is required.
+            </div>
+
+            <div class="form-text text-danger" *ngIf="password.errors?.['minlength'] || password.errors?.['maxlength'] && (password.dirty || password.touched)">
+                Password should be atleast 6 and at the maximum 15 characters long.
+            </div>
+
+            <label for="confirmPassword" class="form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+            
+            <div class="form-text text-danger" [ngStyle]="{ 'display': confirmPass}">
+                Confirm Password is invalid.
+            </div>
+
+            <div class="form-text text-danger" *ngIf="confirmPass === 'mismatch' && (confirmPassword.dirty || confirmPassword.touched)">
+                Passwords do not match
+            </div>
+
             <button type="submit" [disabled]="registerForm.invalid" class="btn btn-success">Register</button>
         </form>
     </div>
+</div>
+<div class="container">
+    <p>Already have an account? <a [routerLink]="['/login']">Login</a></p>
 </div>
