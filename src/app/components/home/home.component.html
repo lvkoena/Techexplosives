@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="rowOne row">
+            <div *ngIf="selectedCategory; else emptyValue">
+                <h1>Shop {{ selectedCategory }}</h1>
+                <div class="product-grid">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #emptyValue>
+        <div *ngIf="selectedCategory ===''">
+            <h1>Shop All</h1>
+            <div class="product-grid">
+                <img (click)="viewProduct(item.productId)" class="proImg" src="{{ item.image.imageURL }}" alt="">
+                <h3 (click)="viewProduct(item.productId)" class="proTitle">{{ item.name }}</h3>
+                <p (click)="viewProduct(item.productId)" class="proPrice">R {{ item.price }}</p>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -10,8 +10,9 @@ export class BackendapiService {
 
   constructor(private http:HttpClient) { }
 
+  // Get all Http methods that make calls to our restful API
   getAllProducts() {
-    throw new Error('Method not implemented.');
+    return this.http.get('https://fakestoreapi.com/products');
 }
 
   // HTTP post request to the url server
