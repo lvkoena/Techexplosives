@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
         next: (val: any) => {
         // once the item has been added, display the success notification and reset the form
         //  this.successNotification();
-        // this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
         // console.log('Successfully registered'+this.registerForm.value)
         //   this.registerForm.reset();
         },
