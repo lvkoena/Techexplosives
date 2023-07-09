@@ -49,9 +49,9 @@
 
             <label for="confirmPassword" class="form-label">Confirm Password:</label>
             <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
-            <div class="form-text text-danger" [ngStyle]="{ 'display': confirmPass }">
+            <!-- <div class="form-text text-danger" [ngStyle]="{ 'display': confirmPass }">
                 confirm Password is invalid.
-            </div>
+            </div> -->
 
             <div class="form-text text-danger" *ngIf="confirmPass === 'mismatch' && (confirmPassword.dirty || confirmPassword.touched)">
                 Passwords do not match

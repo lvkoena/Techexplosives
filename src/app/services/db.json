@@ -12,7 +12,8 @@
             "firstName": "sanele",
             "lastName": "mokoena",
             "email": "sanele@gmail.com",
-            "password": "password"   
+            "password": "password",
+            "confirmPassword": "password"   
         }
     ]
 }
