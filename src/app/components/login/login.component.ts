@@ -1,3 +1,4 @@
+import { LoginServiceService } from './../../services/login-service.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,9 +9,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
-    constructor() { }
 
-    registerForm = new FormGroup({
+    constructor( private LoginServiceService: LoginServiceService ) { }
+
+    loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [
             Validators.required,
@@ -20,17 +22,17 @@ export class LoginComponent {
     });
 
     onSubmit() {
-        if(this.registerForm.valid) {
-            
+        if(this.loginForm.valid) {
+            // this.LoginServiceService.login(this.loginForm.value.email, this.loginForm.value.password);
         }
     }
 
     get email(): FormControl {
-    return this.registerForm.get('email') as FormControl;
+    return this.loginForm.get('email') as FormControl;
   }
 
   get password(): FormControl {
-    return this.registerForm.get('password') as FormControl;
+    return this.loginForm.get('password') as FormControl;
   }
 
 }
