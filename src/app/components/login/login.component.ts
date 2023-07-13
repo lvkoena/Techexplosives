@@ -1,6 +1,7 @@
 import { LoginServiceService } from './../../services/login-service.service';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,22 +9,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+    loginForm!: FormGroup;
+    
 
 
-    constructor( private LoginServiceService: LoginServiceService ) { }
+    constructor( private LoginServiceService: LoginServiceService, private router: Router, private fb: FormBuilder) { }
 
-    loginForm = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(16)
-        ]), 
-    });
+    ngOnInit() {
+        this.loginForm = this.fb.group({
+            email:['', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z.-]+\\.[a-z]{2,4}$")]],
+            password:['', [Validators.required, Validators.minLength(6), Validators.maxLength(16)]]        
+        })
+    }
 
     onSubmit() {
         if(this.loginForm.valid) {
-            // this.LoginServiceService.login(this.loginForm.value.email, this.loginForm.value.password);
+            this.LoginServiceService.login(this.loginForm.value.email, this.loginForm.value.password);
+            this.router.navigate(['']);
         }
     }
 
