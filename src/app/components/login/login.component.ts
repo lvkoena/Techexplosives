@@ -2,6 +2,8 @@ import { LoginServiceService } from './../../services/login-service.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,18 @@ export class LoginComponent {
     onSubmit() {
         if(this.loginForm.valid) {
             this.LoginServiceService.login(this.loginForm.value.email, this.loginForm.value.password);
-            this.router.navigate(['']);
+            Swal.fire({
+                icon: 'success',
+                title: 'Successfully logged in!',
+            }).then((result) => {
+                if(result.isConfirmed) {
+                    this.router.navigate(['']);
+                }
+            });
+
+            this.loginForm.reset();
+        }else{
+            alert('User not found! Please try again');
         }
     }
 
