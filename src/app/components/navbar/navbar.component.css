@@ -48,3 +48,18 @@ body{
     color: #ffffff;
     text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 480px) {
+    .nav-item a{
+        flex-direction: column;
+        margin-right: 50px;
+    }
+
+    .cart, .profile{
+        display: none;
+    }
+}
