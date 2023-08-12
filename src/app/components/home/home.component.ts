@@ -1,47 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { BackendapiService } from './../../services/backendapi.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/interface/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-    item: any;
-    itemOne: any;
-    items: any;
-    selectedCategory: any = '';
-    filteredItems: any[] = [];
+export class HomeComponent implements OnInit{
+    products: Product[] = [];
 
-    constructor(private route: ActivatedRoute, private BackendapiService: BackendapiService, 
-        private router: Router, private http: HttpClient) { }
+    constructor(private productService: ProductService) {}
 
     ngOnInit() {
-        this.fetchItems();
-
+        this.productService.getAllProducts().subscribe(
+            (products: Product[]) => {
+                this.products = products;
+            },
+            error => {
+                console.error('Error fetching products: ', error);
+            }
+        );
     }
 
-    fetchItems() {
-        this.BackendapiService.getAllProducts()
-        .subscribe(res => {
-            this.itemOne = res;
-            this.items = this.itemOne.data;
-            this.selectedCategory = '';
-        });
-    }
-
-    // filterItems() {
-    //     if (this.selectedCategory) {
-    //         this.filteredItems = [...this.items.filter(item: { category: { name: string | any[];}; }) => this.item.category.name.includes(this.selectedCategory)];
-    //     }else{
-    //         this.filteredItems - this.items;
-    //     }
-    // }
-
-    viewProduct(id: number) {
-        this.router.navigate(['/viewProduct' + id]);
-    }
-
+    
 }
