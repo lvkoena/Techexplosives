@@ -6,11 +6,16 @@ import { Product } from '../interface/product';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'https://fakestoreapi.com/products';
+  private getAll = 'https://fakestoreapi.com/products';
+  private getOne = 'https://fakestoreapi.com/products/1';
 
   constructor(private http: HttpClient) { }
 
   getAllProducts() {
-    return this.http.get<Product[]>(this.apiUrl);
+    return this.http.get<Product[]>(this.getAll);
+  }
+
+  getOneProduct() {
+    return this.http.get<Product[]>(this.getOne)
   }
 }
