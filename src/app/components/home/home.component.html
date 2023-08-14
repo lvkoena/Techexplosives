@@ -1,11 +1,10 @@
 <div class="card-container" *ngFor="let product of products">
-  <div class="card">
+  <div class="card" (click)="navigateToProductDetails(product.id)">
     <img src="{{ product.image }}" class="card-img-top" alt="...">
     <div class="card-body">
       <h3 class="card-title">{{ product.title }}</h3>
       <p class="card-text">{{ product.description }}</p>
       <span class="card-price">R{{ product.price }}</span>
-      <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
     </div>
   </div>
 </div>

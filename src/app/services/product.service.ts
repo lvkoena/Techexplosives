@@ -7,7 +7,7 @@ import { Product } from '../interface/product';
 })
 export class ProductService {
   private getAll = 'https://fakestoreapi.com/products';
-  private getOne = 'https://fakestoreapi.com/products/1';
+  private getOne = 'https://fakestoreapi.com/products/';
 
   constructor(private http: HttpClient) { }
 
