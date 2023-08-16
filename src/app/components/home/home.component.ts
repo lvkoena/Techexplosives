@@ -30,6 +30,6 @@ export class HomeComponent implements OnInit {
     }
 
     navigateToProductDetails(id: number) {
-        this.router.navigate(['product-details']);
+        this.router.navigate(['product-details/' + id]);
     }
 }

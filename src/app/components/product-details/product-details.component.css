@@ -1,0 +1,116 @@
+/* Styling for the container holding the card */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch; 
+  padding: 20px;
+  margin-top: 160px;
+}
+
+.card-container {
+  width: 850px;
+  margin: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: flex; 
+  flex-direction: column; /* Stack children vertically */
+}
+
+/* Styling for the card itself */
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow the card to grow to fill container height */
+}
+
+/* Styling for the card image */
+.card-img-top {
+  display: flex; /* Display as a flex container */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 150px; /* Set a fixed height for the image container */
+}
+
+.card-img-top img {
+  max-width: 100%;
+  max-height: 100%; /* Fill the available height */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Styling for the card body */
+.card-body {
+  padding: 10px;
+}
+
+/* Styling for the card title */
+.card-title h3 {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Styling for the card text */
+.card-text p {
+  margin: 10px 0;
+  font-size: 12px; /* Adjust the font size to make the text smaller */
+  color: #555;
+  max-height: 60px; /* Limit the card text height */
+  overflow: hidden;
+}
+
+/* Styling for the card price */
+.card-price {
+  display: flex;
+  padding: 10px;
+  height: 40px; /* Set a fixed height for the price section */
+}
+
+.card-price span {
+  font-size: 26px;
+  font-weight: bold;
+  color: #0a0a0a;
+}
+
+.sideCardContainer{
+  width: 350px;
+  margin: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: flex; 
+  flex-direction: column; /* Stack children vertically */
+}
+
+.add-to-cart-button button {
+ 
+  padding: 10px;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(121, 121, 121);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button button:hover {
+  background-color: #d35400;
+}
+
+/* .add-to-cart-button{
+  display: flex;
+  padding: 10px;
+  margin-top: 150px;
+} */
+
+
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 calc(100% - 20px);
+  }
+}

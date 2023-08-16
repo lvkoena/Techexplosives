@@ -9,25 +9,24 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductDetailsComponent implements OnInit{
   product: any;
+  id: any;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService){
+  constructor(private productService: ProductService, private route: ActivatedRoute) {}
 
-  }
-
-  ngOnInit(){
+  ngOnInit(): void {
     this.individualProduct();
   }
 
-  individualProduct():void {
-    const id: any = this.route.snapshot.paramMap.get('id');
-    this.productService.getOneProduct(id).subscribe(
-      (data) => {
-        this.product = data;
-      },
-      (error) =>{
-        console.error('Error fetching product:', error);
-      }
-    );
+  // fetch individual product from product services
+  individualProduct() {
+    if(this.id = this.route.snapshot.paramMap.get('id')) {
+      this.productService.getOneProduct(this.id).subscribe((res) =>{
+        this.product = res;
+      });
+    }
   }
 
+  addToCart(product: any): void {
+    console.log('Added to the cart', product)
+  }
 }
