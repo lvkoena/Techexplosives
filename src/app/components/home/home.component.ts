@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class HomeComponent implements OnInit {
     products: Product[] = [];
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService, private router: Router) { }
 
     ngOnInit() {
         this.allProducts();
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
         );
     }
 
-    addToCart(product: Product): void {
-       
+    navigateToProductDetails(id: number) {
+        this.router.navigate(['product-details']);
     }
 }

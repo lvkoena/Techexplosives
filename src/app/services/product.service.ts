@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../interface/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   private getAll = 'https://fakestoreapi.com/products';
-  private getOne = 'https://fakestoreapi.com/products/1';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class ProductService {
     return this.http.get<Product[]>(this.getAll);
   }
 
-  getOneProduct() {
-    return this.http.get<Product[]>(this.getOne)
+  getOneProduct(id: number): Observable<any> {
+    return this.http.get(`${this.getAll}/${id}`);
   }
 }
