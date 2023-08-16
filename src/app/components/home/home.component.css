@@ -53,13 +53,14 @@
 /* Styling for the card title */
 .card-title h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
+  text-align: center;
 }
 
 /* Styling for the card text */
 .card-text p {
   margin: 10px 0;
-  font-size: 14px;
+  font-size: 12px; /* Adjust the font size to make the text smaller */
   color: #555;
   max-height: 60px; /* Limit the card text height */
   overflow: hidden;
@@ -78,10 +79,6 @@
   font-weight: bold;
   color: #f57224;
 }
-
-
-
-
 
 
 
