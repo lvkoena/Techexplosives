@@ -6,7 +6,7 @@
             </div>
             <div class="card-body">
                 <div class="card-title">
-                    <h3>{{ product.title }}</h3>
+                    <h1>{{ product.title }}</h1>
                 </div>
                 <div class="card-text">
                     <p>{{ product.description }}</p>
@@ -14,14 +14,14 @@
             </div>
         </div>
     </div>
-   <div class="sideCardContainer">
-    <div class="sideCard">
-        <div class="card-price">
-            <span>R {{ product.price }}</span>
-        </div>
-        <div class="add-to-cart-button">
-            <button (click)="addToCart(product)">Add to Cart</button>
+    <div class="sideCardContainer">
+        <div class="sideCard">
+            <div class="card-price">
+                <span>R {{ product.price }}</span>
+            </div>
+            <div class="add-to-cart-button">
+                <button (click)="addToCart(product)">Add to Cart</button>
+            </div>
         </div>
     </div>
-   </div>
 </div>
