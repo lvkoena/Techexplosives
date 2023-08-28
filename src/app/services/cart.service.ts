@@ -6,15 +6,31 @@ import { Product } from '../interface/product';
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: any [] = [];
-  private cartItemsSubject = new BehaviorSubject<Product[]>([]);
-  private quantitySubject = new BehaviorSubject<number>(0);
-  private countSubject = new BehaviorSubject<number>(0);
-  private totalPriceSubject = new BehaviorSubject<number>(0);
+  private cartItems: string[] = [];
+  private cartItemCountSubject = new BehaviorSubject<number>(0);
 
   constructor() { }
 
-  addToCart(product: any) {
-    // const cartItem = this.cartItems.find(); 
+  getCartItems() {
+    return this.cartItems;
   }
+
+  addToCart(item: string) {
+    this.cartItems.push(item);
+    this.updateCartItemCount();
+  }
+
+  removeFromCart(index: number){
+    this.cartItems.slice(index, 1);
+    this.updateCartItemCount();
+  }
+
+  getCartItemCount() {
+    return this.cartItemCountSubject.asObservable();
+  }
+
+  updateCartItemCount() {
+    this.cartItemCountSubject.next(this.cartItems.length);
+  }
+
 }
