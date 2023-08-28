@@ -9,7 +9,10 @@ export class CartService {
   private cartItems: string[] = [];
   private cartItemCountSubject = new BehaviorSubject<number>(0);
 
-  constructor() { }
+  constructor() {
+    //Load cart data from localStorage during service initialization
+    this.loadCartData();
+  }
 
   getCartItems() {
     return this.cartItems;
@@ -31,6 +34,19 @@ export class CartService {
 
   updateCartItemCount() {
     this.cartItemCountSubject.next(this.cartItems.length);
+    this.saveCartData();
+  }
+
+  saveCartData() {
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+  }
+
+  loadCartData() {
+    const cartData = localStorage.getItem('cartItems');
+    if(cartData) {
+      this.cartItems = JSON.parse(cartData);
+      this.updateCartItemCount();
+    }
   }
 
 }
