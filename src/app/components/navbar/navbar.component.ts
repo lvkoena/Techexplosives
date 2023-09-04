@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { count } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -8,7 +8,9 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-  cartItemCount: number = 0; // initialize cart item count to 0
+  cartItemCount: number = 0;
+  searchQuery: string = '';
+  @Output() searchQueryChange = new EventEmitter<string>();
 
   constructor(private cartService: CartService) {
   }
@@ -17,6 +19,10 @@ export class NavbarComponent implements OnInit{
     this.cartService.getCartItemCount().subscribe(count =>{
       this.cartItemCount = count;
     });
+  }
+
+  onSearch(): void {
+    this.searchQueryChange.emit(this.searchQuery);
   }
 
 }

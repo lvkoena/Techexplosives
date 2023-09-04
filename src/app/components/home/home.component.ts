@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+    @Input() searchQuery: string = '';
     products: Product[] = [];
 
     constructor(private productService: ProductService, private router: Router) { }
