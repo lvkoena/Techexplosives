@@ -1,0 +1,24 @@
+/* Footer css */
+.footer {
+    background-color: #333;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .footer h2 {
+    font-size: 20px;
+    color: white;
+  }
+  
+  .footer span {
+    display: block;
+    font-size: 16px;
+    margin-top: 50px;
+  }
