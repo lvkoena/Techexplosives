@@ -24,3 +24,18 @@
   color: white;
 }
 
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .footer {
+      padding: 5px 0; /* Adjust padding for smaller screens */
+    }
+  
+    .footer h2 {
+      font-size: 14px; /* Decrease font size for smaller screens */
+    }
+  
+    .footer span {
+      font-size: 12px; /* Decrease font size for smaller screens */
+    }
+  }
+
