@@ -4,6 +4,7 @@
   text-align: center;
   width: 100%;
   position: absolute;
+  bottom: 0;
   padding: 10px 0; /* Adjust the padding as needed for a smaller footer */
 }
 
