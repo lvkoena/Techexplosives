@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card-container" *ngFor="let product of products">
+  <div class="card-container" *ngFor="let product of (searchResults.length > 0 ? searchResults : products)">
     <div class="card" (click)="navigateToProductDetails(product.id)">
       <div class="card-img-top">
         <img src="{{ product.image }}" alt="clothing">

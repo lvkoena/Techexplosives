@@ -14,15 +14,11 @@
                 </li>
             </ul>
             <div class="search-bar">
-                <input type="text" 
-                class="search-input" 
-                placeholder="Search..."
-                (keyup.enter)="onSearch()"
-                >
+                <input type="text" #searchInput placeholder="Search" (input)="onSearch(searchInput.value)">
             </div>
             <div class="user-links">
                 <a routerLink="/cart" class="cart"><mat-icon>shopping_cart</mat-icon>
-                    <span class="cart-counter">{{  cartItemCount  }}</span>
+                    <!-- <span class="cart-counter">{{  cartItemCount  }}</span> -->
                 </a>
                 <a href="#" class="profile"><mat-icon>account_circle</mat-icon></a>
             </div>
