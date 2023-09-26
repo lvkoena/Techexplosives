@@ -14,7 +14,9 @@
                 </li>
             </ul>
             <div class="search-bar">
-                <input type="text" #searchInput placeholder="Search" (input)="onSearch(searchInput.value)">
+                <form>
+                    <input type="text" [(ngModel)] = "searchQuery" placeholder="Search" name="searchQuery" (input)="onSearch()">
+                </form>
             </div>
             <div class="user-links">
                 <a routerLink="/cart" class="cart"><mat-icon>shopping_cart</mat-icon>
