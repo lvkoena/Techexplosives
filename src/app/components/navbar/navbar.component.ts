@@ -1,7 +1,7 @@
+import { CartService } from './../../services/cart.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { count } from 'rxjs';
 import { Product } from 'src/app/interface/product';
-import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -13,23 +13,23 @@ export class NavbarComponent implements OnInit {
     products: Product[] = [];
     searchQuery: string = '';
     searchResults: any[] = []; //Initialize an array to store search results
+    cartItemCount: number = 0; //Initialize cart item count to 0
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService, private cartService: CartService) { }
 
     ngOnInit(): void {
-        this.loadProducts();
+        this.cartCount();
     }
 
-    loadProducts() {
-        this.productService.getAllProducts().subscribe((products) => {
-            this.products = products;
-        });
+    //Function to handle cart item count
+    cartCount() {
+        this.cartService.getCartItemCount().subscribe(count => 
+            this.cartItemCount = count
+            );
     }
 
     //Function to handle search functionality as the user types
     onSearch() {
-        
-
         //Filter items based on the search query
         this.searchResults = this.products.filter((item) =>
             item.title.toLowerCase().includes(this.searchQuery.toLowerCase())
