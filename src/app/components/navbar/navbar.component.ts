@@ -1,6 +1,5 @@
 import { CartService } from './../../services/cart.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { count } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
 
