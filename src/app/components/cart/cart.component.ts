@@ -6,12 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  product: any;
-  id: any;
-
-
-  proceedCheckout(){
-    
-  }
 
 }
