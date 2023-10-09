@@ -14,6 +14,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     ProductDetailsComponent,
     CartComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
