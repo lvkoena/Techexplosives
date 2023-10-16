@@ -18,9 +18,4 @@ export class ProductService {
   getOneProduct(id: number): Observable<any> {
     return this.http.get(`${this.getAll}/${id}`);
   }
-
-  //New Method for searching products
-  searchProducts(query: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.getAll}?search=${query}`);
-  }
 }

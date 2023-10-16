@@ -11,13 +11,11 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomeComponent implements OnInit {
     products: Product[] = [];
-    searchResults: Product[] = [];//Store search results separately
 
     constructor(private productService: ProductService, private router: Router) { }
 
     ngOnInit() {
         this.allProducts();
-        this.search();
     }
 
     allProducts() {
@@ -29,16 +27,6 @@ export class HomeComponent implements OnInit {
                 console.error('Error fetching products: ', error);
             }
         );
-    }
-
-    search() {
-        this.productService.getAllProducts().subscribe(products =>{
-            this.products = products;
-        });
-    }
-
-    handleSearchResults(results: Product[]) {
-        this.searchResults = results;
     }
 
     navigateToProductDetails(id: number) {

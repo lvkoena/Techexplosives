@@ -21,25 +21,8 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(): void {
         this.cartCount();
-        this.searchProducts();
     }
 
-    searchProducts() {
-        this.productService.getAllProducts().subscribe((products) => {
-            this.products = products;
-        });
-    }
-
-    //Function to handle search functionality as the user types
-    onSearch() {
-        //Filter items based on the search query
-        this.searchResults = this.products.filter((item) =>
-            item.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-
-        // Log the search results to the console
-        console.log('Search Results:', this.searchResults);
-    }
 
      //Function to handle cart item count
      cartCount() {
