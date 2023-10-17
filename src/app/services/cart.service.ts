@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Product } from '../interface/product';
+import { HttpClient } from '@angular/common/http';
+import { Cart } from '../interface/cart';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
+  private getAllCartProducts = 'https://fakestoreapi.com/carts';
+
   private cartItems: string[] = [];
   private cartItemCountSubject = new BehaviorSubject<number>(0);
 
-  constructor() {
+  constructor(private http: HttpClient) {
     //Load cart data from localStorage during service initialization
     this.loadCartData();
+  }
+
+  getAllCartDetails() {
+    return this.http.get<Cart[]>(this.getAllCartProducts);
   }
 
   getCartItems() {
@@ -23,7 +30,7 @@ export class CartService {
     this.updateCartItemCount();
   }
 
-  removeFromCart(index: number){
+  removeFromCart(index: number) {
     this.cartItems.slice(index, 1);
     this.updateCartItemCount();
   }
@@ -43,10 +50,9 @@ export class CartService {
 
   loadCartData() {
     const cartData = localStorage.getItem('cartItems');
-    if(cartData) {
+    if (cartData) {
       this.cartItems = JSON.parse(cartData);
       this.updateCartItemCount();
     }
   }
-
 }
