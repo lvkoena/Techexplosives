@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Cart } from '../interface/cart';
 
@@ -17,8 +17,8 @@ export class CartService {
     this.loadCartData();
   }
 
-  getAllCartDetails() {
-    return this.http.get<Cart[]>(this.getAllCartProducts);
+  getOneCartDetail(id: number): Observable<any> {
+    return this.http.get(`${this.getAllCartProducts}/${id}`);
   }
 
   getCartItems() {

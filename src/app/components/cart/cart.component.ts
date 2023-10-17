@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Cart } from 'src/app/interface/cart';
-import { Product } from 'src/app/interface/product';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,27 +8,23 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-    carts: Cart[] = [];
+    cart: any;
+    id: any;
 
-    constructor(private cartService: CartService, private router: Router) {}
+    constructor(private cartService: CartService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.allCartDetails();
+        this.oneCartDetail();
     }
 
-    allCartDetails(){
-        this.cartService.getAllCartDetails().subscribe(
-            (carts: Cart[]) => {
-                this.carts = carts;
-            },
-            error => {
-                console.error('Error fetching cart details: ', error);
-            }
-        );
-    }
+    //fetch one cart detail from the services
+    oneCartDetail(){
+        if(this.id = this.route.snapshot.paramMap.get('id')) {
+            this.cartService.getOneCartDetail(this.id).subscribe((res) => {
+                this.cart = res
+            });
 
-    navigateToCheckout(id: number) {
-        this.router.navigate(['checkout/' + id]);
+        }
     }
 
 }
