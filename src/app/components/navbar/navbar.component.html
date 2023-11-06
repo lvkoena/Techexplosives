@@ -19,7 +19,19 @@
                 <a routerLink="/cart" class="cart"><mat-icon>shopping_cart</mat-icon>
                     <span class="cart-counter">{{  cartItemCount  }}</span>
                 </a>
-                <a href="#" class="profile"><mat-icon>account_circle</mat-icon></a>
+                <div class="profile">
+                    <div class="dropdown">
+                      <a class="nav-link" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       
+                        <mat-icon style="color: white;margin-right: 3%;margin: 0;" width="10" height="30">keyboard_arrow_down</mat-icon>
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" routerLink="/profile">Profile</a>
+                        <a class="dropdown-item"(click)="logout()">Logout</a>
+                      </div>
+                    </div>
+                </div>
+                <!-- <a href="#" class="profile"><mat-icon>account_circle</mat-icon></a> -->
             </div>
         </div>
     </div>

@@ -30,4 +30,8 @@ export class NavbarComponent implements OnInit {
             .getCartItemCount()
             .subscribe((count) => (this.cartItemCount = count));
     }
+
+    logout() {
+        
+    }
 }
