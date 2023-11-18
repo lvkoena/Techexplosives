@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/view-home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/view-navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
