@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from 'src/app/interface/product';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+// import { Product } from 'src/app/interface/product';
 import { ProductService } from 'src/app/services/product.service';
+import { Product } from './home-data.model';
 
 @Component({
     selector: 'app-home',
