@@ -1,0 +1,27 @@
+<div class="container" *ngIf="cart">
+    <div class="card-container">
+        <div class="card">
+            <div class="card-img-top">
+                <img [src]="cart.image" alt="clothing">
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                    <h1>{{ cart.title }}</h1>
+                </div>
+                <div class="card-text">
+                    <p>{{ cart.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sideCardContainer">
+        <div class="sideCard">
+            <div class="card-price">
+                <span>R {{ cart.price }}</span>
+            </div>
+            <div class="add-to-cart-button">
+                <!-- <button (click)="addToCart(cart)">Add to Cart</button> -->
+            </div>
+        </div>
+    </div>
+</div>

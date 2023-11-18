@@ -12,7 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon";
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { CartComponent } from './components/cart/cart.component';
+import { CartComponent } from './components/view-cart/cart.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/view-about/about.component';
 
