@@ -33,11 +33,6 @@
   
   }
   
-  h3 {
-    text-align: center;
-    color: var(--primary-color);
-  }
-  
   .card-container {
     display: flex;
     width: 100%;
