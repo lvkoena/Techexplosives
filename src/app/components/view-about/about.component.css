@@ -1,9 +1,9 @@
 .banner {
-    height: 20vh;
-    width: 100%;
+    height: var(--banner-height);
+    width: var(--banner-width);
     background-image: url('\src\assets\images\Screenshot (131).png');
-    background-size: cover;
-    background-position: center;
+    background-size: var(--banner-background-size);
+    background-position: var(--banner-background-position);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,17 +13,16 @@
   
   .banner-heading {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    /* margin-left: 7vw; */
+    bottom: var(--bottom);
+    left: var(--left);
     margin-left: var( --medium-margin);
     margin-bottom: 0;
     border-bottom: 5px solid var(--primary-border-color);
     padding-bottom: 3px;
     color: white;
-    font-size:var( --base-font-size);
+    font-size:var( --heading-font-size);
     font-style: normal;
-    font-weight: var(--normal-font-weight);
+    font-weight: var(--bold-front-weight);
     line-height: normal;
   }
   
@@ -36,7 +35,7 @@
   .card-container {
     display: flex;
     width: 100%;
-    margin-top: 20px;
+    margin-top: var( --default-margin);
     align-items: center;
     text-align: center;
     justify-content: center;
@@ -56,8 +55,8 @@
   
   .content{
     width:80%;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: var( --default-margin);
+    margin-bottom: var( --default-margin);
   }
   
   p {
