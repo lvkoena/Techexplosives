@@ -15,20 +15,21 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    margin-left: 7vw;
+    /* margin-left: 7vw; */
+    margin-left: var( --medium-margin);
     margin-bottom: 0;
-    border-bottom: 5px solid var(--primary-lighter);
+    border-bottom: 5px solid var(--primary-border-color);
     padding-bottom: 3px;
     color: white;
-    font-size:var(--font-xxx-large);
+    font-size:var( --base-font-size);
     font-style: normal;
-    font-weight: var(--regular);
+    font-weight: var(--normal-font-weight);
     line-height: normal;
   }
   
   h2 {
     text-align: center;
-    color: var(--primary-color);
+    color: var(--secondary-color);
   
   }
   
