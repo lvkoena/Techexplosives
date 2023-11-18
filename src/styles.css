@@ -5,6 +5,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 :root {
+    --banner-background-size: cover;
+    --banner-background-position: center;
+
+    --bottom: 0;
+    --left: 0;
+
     --primary-color: white;
     --secondary-color: #333;
 
@@ -12,14 +18,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --secondary-border-color: dark grey;
 
     --base-font-size: 16px;
-    --heading-font-size: 24px;
     --subheading-font-size: 18px;
+    --heading-font-size: 24px;
 
-    --normal-font-weight: 400;
-    --bold-front-weight: 700;
+    --banner-height: 20vh;
 
     --default-margin:10px;
     --medium-margin: 7vw;
     --large-margin: 15vw;
+    
+    --normal-font-weight: 400px;
+    --bold-front-weight: 700px;
+
+    --banner-width: 100%;
 
 }
