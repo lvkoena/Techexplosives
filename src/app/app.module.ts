@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './components/view-register/register.component';
+// import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
@@ -19,7 +19,7 @@ import { AboutComponent } from './components/view-about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
+    // RegisterComponent,
     LoginComponent,
     HomeComponent,
     NavbarComponent,
