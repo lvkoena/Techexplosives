@@ -38,8 +38,8 @@ body{
 }
 
 .user-links{
+    margin-right: 110px;
     display: flex;
-    align-items: center;
     gap: 40px;
     font-size: 20px;
 }
