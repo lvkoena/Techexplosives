@@ -1,6 +1,5 @@
 import { CartService } from '../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
 import { Product } from './navbar-data.model';
 
 @Component({
@@ -15,7 +14,6 @@ export class NavbarComponent implements OnInit {
     cartItemCount: number = 0; 
 
     constructor(
-        private productService: ProductService,
         private cartService: CartService
     ) { }
 
