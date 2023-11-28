@@ -1,0 +1,34 @@
+/* Style the form container */
+form {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Style the form labels */
+.form-label {
+    font-weight: bold;
+}
+
+/* Style the form input fields */
+.form-control {
+    margin-bottom: 10px;
+}
+
+/* Style the form checkbox */
+.form-check-input {
+    margin-right: 5px;
+}
+
+/* Style the submit button */
+.btn-primary {
+    margin-top: 10px;
+}
+
+/* Style the feedback messages */
+.valid-feedback {
+    color: green;
+}
+
+.invalid-feedback {
+    color: red;
+}
