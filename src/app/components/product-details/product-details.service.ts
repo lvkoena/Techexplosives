@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class CartService {
+export class ProductDetailsService {
   private getAllCartProducts = 'https://fakestoreapi.com/carts';
 
   private cartItems: string[] = [];

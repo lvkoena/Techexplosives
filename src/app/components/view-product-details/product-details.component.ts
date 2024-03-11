@@ -15,11 +15,11 @@ export class ProductDetailsComponent implements OnInit{
   constructor(private productService: ProductService, private productDetailsService: ProductDetailsService,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.fetchIndividualProduct();
+    this.individualProduct();
   }
 
   // fetch individual product from product services
-  fetchIndividualProduct() {
+  individualProduct() {
     if(this.id = this.route.snapshot.paramMap.get('id')) {
       this.productService.getOneProduct(this.id).subscribe((res) =>{
         this.product = res;
