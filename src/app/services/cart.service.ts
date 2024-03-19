@@ -1,37 +1,21 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Cart } from '../interface/cart';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private getAllCartProducts = 'https://fakestoreapi.com/carts';
 
   private cartItems: string[] = [];
   private cartItemCountSubject = new BehaviorSubject<number>(0);
 
-  constructor(private http: HttpClient) {
+  constructor() {
     //Load cart data from localStorage during service initialization
     this.loadCartData();
   }
 
-  getOneCartDetail(id: number): Observable<any> {
-    return this.http.get(`${this.getAllCartProducts}/${id}`);
-  }
-
-  getCartItems() {
-    return this.cartItems;
-  }
-
   addToCart(item: string) {
     this.cartItems.push(item);
-    this.updateCartItemCount();
-  }
-
-  removeFromCart(index: number) {
-    this.cartItems.slice(index, 1);
     this.updateCartItemCount();
   }
 
