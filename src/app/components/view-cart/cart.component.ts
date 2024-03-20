@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -8,11 +7,15 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+    products: any;
+    product: any;
 
-    constructor() {}
+    constructor(private cartService: CartService) {}
 
-    ngOnInit(): void {
-      
+    ngOnInit() {
+        this.cartService.getCartItemCount().subscribe(product => {
+            this.products = product;
+          });
     }
 
 }
