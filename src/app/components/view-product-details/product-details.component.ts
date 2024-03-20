@@ -12,7 +12,9 @@ export class ProductDetailsComponent implements OnInit{
   product: any;
   id: any;
 
-  constructor(private productService: ProductService, private cartService: CartService,private route: ActivatedRoute) {}
+  constructor(private productService: ProductService, 
+    private cartService: CartService,
+    private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.fetchIndividualProduct();
