@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-    cartItemCount: number = 0; 
+    //Find a way to make this a number and fix errors
+    cartItemCount: any = 0; 
 
     constructor(
         private cartService: CartService
