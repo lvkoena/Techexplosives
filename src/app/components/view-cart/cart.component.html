@@ -1,4 +1,4 @@
-<div class="container" *ngFor="let product of products">{{ product.name }} - {{ product.price }}>
+<div class="container" *ngFor="let product of products">
     <div class="card-container">
         <div class="card">
             <div class="card-img-top">
@@ -12,15 +12,23 @@
                     <p>{{ product.description }}</p>
                 </div>
             </div>
+            <div class="sideCardContainer">
+                <div class="sideCard">
+                    <div class="card-price">
+                        <span>R {{ product.price }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="sideCardContainer">
         <div class="sideCard">
+            <h3>Your Order Summary</h3>
             <div class="card-price">
                 <span>R {{ product.price }}</span>
             </div>
             <div class="add-to-cart-button">
-
+                <button>Checkout</button>
             </div>
         </div>
     </div>
