@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
     //Find a way to make this a number and fix errors
-    cartItemCount: any = 0; 
+    cartItemCount: number = 0; 
 
     constructor(
         private cartService: CartService
@@ -18,12 +18,11 @@ export class NavbarComponent implements OnInit {
         this.cartCount();
     }
 
-
      //Function to handle cart item count
      cartCount() {
-        this.cartService
-            .getCartItemCount()
-            .subscribe((count) => (this.cartItemCount = count));
+        this.cartService.getCartItemCount().subscribe(count => {
+            this.cartItemCount = count;
+        });
     }
 
     logout() { 
