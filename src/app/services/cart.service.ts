@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class CartService {
 
   private cartItems: string[] = [];
-  private cartItemCountSubject = new BehaviorSubject<any[]>([]);
+  private cartItemCountSubject = new BehaviorSubject<number>(0);
 
   constructor() {
     //Load cart data from localStorage during service initialization
@@ -16,7 +16,7 @@ export class CartService {
 
   addToCart(item: string) {
     this.cartItems.push(item);
-    this.cartItemCountSubject.next([...this.cartItems]);
+    this.cartItemCountSubject.next(this.cartItems.length);
     this.updateCartItemCount();
   }
 
