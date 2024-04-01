@@ -10,3 +10,23 @@ h4,h6 {
     font-size: 15px;
     font-weight: 500;
 }
+
+.card-table{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: none;
+    word-wrap: break-word;
+    background-color:black space-between;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: .25rem;
+}
+
+.center .btn{
+    font-size: 14px;
+    margin-top: 20px;
+    font-weight: 400;
+    padding: 12px 72px;
+    border-radius: 3px !important;
+}
