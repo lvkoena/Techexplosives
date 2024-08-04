@@ -16,7 +16,6 @@ import { CartComponent } from './components/view-cart/cart.component';
 import { FooterComponent } from './components/view-footer/footer.component';
 import { AboutComponent } from './components/view-about/about.component';
 import { CheckoutComponent } from './components/view-checkout/checkout/checkout.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
     FooterComponent,
     AboutComponent,
     CheckoutComponent,
-    ProfileComponent,
     ViewProfileComponent
   ],
   imports: [

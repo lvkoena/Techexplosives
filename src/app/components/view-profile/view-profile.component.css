@@ -1,0 +1,32 @@
+.profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.profile-picture img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 1rem;
+}
+
+.profile-info h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.profile-contact, .profile-activity, .profile-settings, .profile-achievements, .profile-connections {
+    margin-bottom: 1rem;
+}
+
+.profile-contact h3, .profile-activity h3, .profile-settings h3, .profile-achievements h3, .profile-connections h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
