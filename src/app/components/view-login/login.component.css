@@ -131,6 +131,16 @@ button[type="submit"],
   margin-right: 10px;
 }
 
+.signup-text {
+  margin-top: 20px;
+  color: #666;
+}
+
+.signup-text a {
+  color: #6C63FF;
+  text-decoration: none;
+}
+
 .separator {
   margin: 20px 0;
   position: relative;
