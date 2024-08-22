@@ -15,4 +15,8 @@ export class RegisterService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
   }
+
+  getChartData(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/chart-data`);
+  }
 }

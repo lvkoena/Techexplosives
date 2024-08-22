@@ -16,9 +16,12 @@ export class RegisterComponent implements OnInit {
   constructor(private registerService: RegisterService) {}
 
   ngOnInit(): void {
-    this.registerService.getAllUsers().subscribe(data => {
-      this.users = data;
-      console.log('Fetched Users:', this.users);
+    this.registerService.getChartData().subscribe(data => {
+      const chartData = data.map(item => ({
+        value: item.value,
+        name: item.name
+      }));
+  
       this.initializeChart();
     });
   }
