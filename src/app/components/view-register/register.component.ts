@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interface/user';
 import { RegisterService } from 'src/app/services/register.service';
 import * as echarts from 'echarts';
 
@@ -11,28 +10,22 @@ type EChartsOption = echarts.EChartsOption;
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  public users: User[] = [];
 
   constructor(private registerService: RegisterService) {}
 
   ngOnInit(): void {
     this.registerService.getChartData().subscribe(data => {
-      const chartData = data.map(item => ({
-        value: item.value,
-        name: item.name
-      }));
-  
-      this.initializeChart();
+      this.initializeChart(data);
     });
   }
 
-  private initializeChart(): void {
+  private initializeChart(data: { name: string, value: number }[]): void {
     const chartDom = document.getElementById('main')!;
     const myChart = echarts.init(chartDom);
     const option: EChartsOption = {
       title: {
         text: 'Referer of a Website',
-        subtext: 'Fake Data',
+        subtext: 'Real Data from MongoDB',
         left: 'center',
       },
       tooltip: {
@@ -47,13 +40,7 @@ export class RegisterComponent implements OnInit {
           name: 'Access From',
           type: 'pie',
           radius: '50%',
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' },
-          ],
+          data: data,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
