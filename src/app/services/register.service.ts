@@ -12,10 +12,6 @@ export class RegisterService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl);
-  }
-
   getChartData(): Observable<{ name: string, value: number }[]> {
     return this.http.get<{ name: string, value: number }[]>(`${this.baseUrl}/chart-data`);
   }
