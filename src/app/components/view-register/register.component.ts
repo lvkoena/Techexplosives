@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerService.getChartData().subscribe(data => {
       this.initializePieChart(data);
-      this.initializeLineChart();
+      this.initializeLineChart(data);
     });
   }
 
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     const option: EChartsOption = {
       title: {
         text: 'Referer of a Website',
-        subtext: 'Real Data from MongoDB',
+        subtext: 'Tech Stack Data from MongoDB',
         left: 'center',
       },
       tooltip: {
@@ -56,70 +56,39 @@ export class RegisterComponent implements OnInit {
     option && myChart.setOption(option);
   }
 
-  private initializeLineChart(): void {
+  private initializeLineChart(data: { name: string, value: number }[]): void {
     const chartDom = document.getElementById('lineChart')!;
     const myChart = echarts.init(chartDom);
     const option: EChartsOption = {
       title: {
-        text: 'Stacked Line'
+        text: 'Stacked Line Chart',
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
       },
       legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        data: data.map(item => item.name),  // Extract names for legend
       },
       grid: {
         left: '3%',
         right: '4%',
         bottom: '3%',
-        containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
+        containLabel: true,
       },
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
       },
-      series: [
-        {
-          name: 'Email',
-          type: 'line',
-          stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: 'Union Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: 'Video Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
-        }
-      ]
+      series: data.map(item => ({
+        name: item.name,
+        type: 'line',
+        stack: 'Total',
+        data: [item.value, item.value, item.value, item.value, item.value, item.value, item.value],  // Simplified for example
+      })),
     };
 
     option && myChart.setOption(option);
