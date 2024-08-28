@@ -15,80 +15,48 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerService.getChartData().subscribe(data => {
-      this.initializePieChart(data);
-      this.initializeLineChart(data);
+      this.initializeBarChart(data);
     });
   }
 
-  private initializePieChart(data: { name: string, value: number }[]): void {
-    const chartDom = document.getElementById('main')!;
+  private initializeBarChart(data: { name: string, value: number, year: number }[]): void {
+    const chartDom = document.getElementById('barChart')!;
     const myChart = echarts.init(chartDom);
-    const option: EChartsOption = {
-      title: {
-        text: 'Referer of a Website',
-        subtext: 'Tech Stack Data from MongoDB',
-        left: 'center',
-      },
-      tooltip: {
-        trigger: 'item',
-      },
-      legend: {
-        orient: 'vertical',
-        left: 'left',
-      },
-      series: [
-        {
-          name: 'Access From',
-          type: 'pie',
-          radius: '50%',
-          data: data,
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
-          },
-        },
-      ],
-    };
 
-    option && myChart.setOption(option);
-  }
+    const platforms = Array.from(new Set(data.map(item => item.name)));
+    const years = Array.from(new Set(data.map(item => item.year)));
 
-  private initializeLineChart(data: { name: string, value: number }[]): void {
-    const chartDom = document.getElementById('lineChart')!;
-    const myChart = echarts.init(chartDom);
+    const series: echarts.SeriesOption[] = platforms.map(platform => ({
+      name: platform,
+      type: 'bar',
+      data: years.map(year => {
+        const item = data.find(d => d.name === platform && d.year === year);
+        return item ? item.value : 0;
+      })
+    }));
+
     const option: EChartsOption = {
-      title: {
-        text: 'Stacked Line Chart',
-      },
       tooltip: {
         trigger: 'axis',
+        axisPointer: { type: 'shadow' }
       },
       legend: {
-        data: data.map(item => item.name),  // Extract names for legend
+        data: platforms
       },
       grid: {
         left: '3%',
         right: '4%',
         bottom: '3%',
-        containLabel: true,
+        containLabel: true
       },
       xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        type: 'value'
       },
       yAxis: {
-        type: 'value',
+        type: 'category',
+        data: platforms
       },
-      series: data.map(item => ({
-        name: item.name,
-        type: 'line',
-        stack: 'Total',
-        data: [item.value, item.value, item.value, item.value, item.value, item.value, item.value],  // Simplified for example
-      })),
+      series: series
     };
 
     option && myChart.setOption(option);
