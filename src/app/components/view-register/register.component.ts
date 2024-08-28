@@ -26,10 +26,10 @@ export class RegisterComponent implements OnInit {
     const platforms = Array.from(new Set(data.map(item => item.name)));
     const years = Array.from(new Set(data.map(item => item.year)));
 
-    const series: echarts.SeriesOption[] = platforms.map(platform => ({
-      name: platform,
+    const series: echarts.SeriesOption[] = years.map(year => ({
+      name: String(year),
       type: 'bar',
-      data: years.map(year => {
+      data: platforms.map(platform => {
         const item = data.find(d => d.name === platform && d.year === year);
         return item ? item.value : 0;
       })
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         axisPointer: { type: 'shadow' }
       },
       legend: {
-        data: platforms
+        data: years.map(String)
       },
       grid: {
         left: '3%',
@@ -50,11 +50,15 @@ export class RegisterComponent implements OnInit {
         containLabel: true
       },
       xAxis: {
-        type: 'value'
+        type: 'category',
+        data: platforms,
+        axisLabel: {
+          rotate: 45,
+          interval: 0
+        }
       },
       yAxis: {
-        type: 'category',
-        data: platforms
+        type: 'value'
       },
       series: series
     };
