@@ -125,12 +125,12 @@ export class RegisterComponent implements OnInit {
           stack: 'Total',
           data: [320, 332, 301, 334, 390, 330, 320]
         },
-        // {
-        //   name: 'Search Engine',
-        //   type: 'line',
-        //   stack: 'Total',
-        //   data: [820, 932, 901, 934, 1290, 1330, 1320]
-        // }
+        {
+          name: 'Search Engine',
+          type: 'line',
+          stack: 'Total',
+          data: [820, 932, 901, 934, 1290, 1330, 1320]
+        }
       ]
     };
 
