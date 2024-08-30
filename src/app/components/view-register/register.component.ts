@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerService.getChartData().subscribe(data => {
       this.initializeBarChart(data);
-      this.initializeStackedLineChart();
+      this.initializeStackedLineChart(data);
     });
   }
 
@@ -67,9 +67,19 @@ export class RegisterComponent implements OnInit {
     option && myChart.setOption(option);
   }
 
-  private initializeStackedLineChart(): void {
+  private initializeStackedLineChart(data: { name: string, value: number, year: number }[]): void {
     const chartDom = document.getElementById('lineChart')!;
     const myChart = echarts.init(chartDom);
+
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']; // Placeholder for categories
+    const platforms = Array.from(new Set(data.map(item => item.name)));
+
+    const series: echarts.SeriesOption[] = platforms.map(platform => ({
+      name: platform,
+      type: 'line',
+      stack: 'Total',
+      data: days.map(day => Math.floor(Math.random() * 1000)) // Random placeholder data
+    }));
 
     const option: EChartsOption = {
       title: {
@@ -79,7 +89,7 @@ export class RegisterComponent implements OnInit {
         trigger: 'axis'
       },
       legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        data: platforms
       },
       grid: {
         left: '3%',
@@ -95,43 +105,12 @@ export class RegisterComponent implements OnInit {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: days
       },
       yAxis: {
         type: 'value'
       },
-      series: [
-        {
-          name: 'Email',
-          type: 'line',
-          stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: 'Union Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: 'Video Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
-        }
-      ]
+      series: series
     };
 
     option && myChart.setOption(option);
