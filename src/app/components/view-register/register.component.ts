@@ -70,17 +70,20 @@ export class RegisterComponent implements OnInit {
   private initializeStackedLineChart(data: { name: string, value: number, year: number }[]): void {
     const chartDom = document.getElementById('lineChart')!;
     const myChart = echarts.init(chartDom);
-
-    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']; // Placeholder for categories
+  
     const platforms = Array.from(new Set(data.map(item => item.name)));
-
+    const years = Array.from(new Set(data.map(item => item.year)));
+  
     const series: echarts.SeriesOption[] = platforms.map(platform => ({
       name: platform,
       type: 'line',
       stack: 'Total',
-      data: days.map(day => Math.floor(Math.random() * 1000)) // Random placeholder data
+      data: years.map(year => {
+        const item = data.find(d => d.name === platform && d.year === year);
+        return item ? item.value : 0;
+      })
     }));
-
+  
     const option: EChartsOption = {
       title: {
         text: 'Stacked Line'
@@ -105,14 +108,15 @@ export class RegisterComponent implements OnInit {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: days
+        data: years.map(String)
       },
       yAxis: {
         type: 'value'
       },
       series: series
     };
-
+  
     option && myChart.setOption(option);
   }
+  
 }
