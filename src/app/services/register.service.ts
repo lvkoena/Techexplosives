@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
 
-  private baseUrl = 'http://localhost:8080/api/users'; 
+  private apiUrl = 'http://localhost:8080/api/chartdata';
 
   constructor(private http: HttpClient) { }
 
-  getChartData(): Observable<{ name: string, value: number, year: number }[]> {
-    return this.http.get<{ name: string, value: number, year: number }[]>(`${this.baseUrl}/chart-data`);
+  getChartData(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/all`);
   }
+
 }
