@@ -1,5 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
+import { ChartData } from 'src/app/interface/ChartData';
+import { RegisterService } from 'src/app/services/register.service';
 
 type EChartsOption = echarts.EChartsOption;
 
@@ -8,76 +10,116 @@ type EChartsOption = echarts.EChartsOption;
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements AfterViewInit {
+export class RegisterComponent implements OnInit {
   myChart: echarts.ECharts | undefined;
 
-  ngAfterViewInit(): void {
-    const chartDom = document.getElementById('lineChart') as HTMLElement; 
+  constructor(private registerService: RegisterService) {}
+
+  // ngAfterViewInit(): void {
+  //   this.lineChart();
+  // }
+
+  ngOnInit(): void {
+    this.registerService.getChartData().subscribe((data: ChartData[]) => {
+      // Prepare data for pie chart
+      const pieChartData = data.map(item => ({
+        value: item.data[0], 
+        name: item.name
+      }));
+      this.initializePieChart(pieChartData);
+      
+      // Prepare data for line chart
+      this.lineChart();
+    });
+  }
+
+  private lineChart(): void {
+    const chartDom = document.getElementById('lineChart') as HTMLElement;
     this.myChart = echarts.init(chartDom);
+
+    this.registerService.getChartData().subscribe(chartData => {
+      if (this.myChart) { 
+        const option: EChartsOption = {
+          title: {
+            text: 'Stacked Line'
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          legend: {
+            data: chartData.map(data => data.name) 
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {}
+            }
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: chartData.map(data => ({
+            name: data.name,
+            type: data.type,
+            stack: data.stack,
+            data: data.data
+          }))
+        };
+
+        this.myChart.setOption(option);
+      }
+    });
+  }
+
+  private initializePieChart(data: { value: number; name: string; }[]): void {
+    const chartDom = document.getElementById('pieChart')!;
+    const myChart = echarts.init(chartDom);
+
+    const seriesData = data.map(item => ({
+      value: item.value,
+      name: item.name
+    }));
+
     const option: EChartsOption = {
       title: {
-        text: 'Stacked Line'
+        text: 'Referer of a Website',
+        subtext: 'Fake Data',
+        left: 'center'
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'item'
       },
       legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
+        orient: 'vertical',
+        left: 'left'
       },
       series: [
         {
-          name: 'Email',
-          type: 'line',
-          stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: 'Union Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: 'Video Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
+          name: 'Access From',
+          type: 'pie',
+          radius: '50%',
+          data: seriesData,
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
         }
       ]
     };
 
-    // Set the chart option
-    this.myChart.setOption(option);
+    myChart.setOption(option);
   }
 }
