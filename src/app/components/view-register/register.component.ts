@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import * as echarts from 'echarts';
 
 type EChartsOption = echarts.EChartsOption;
@@ -10,14 +11,37 @@ type EChartsOption = echarts.EChartsOption;
 })
 export class RegisterComponent implements OnInit {
 
+  constructor(private http: HttpClient) {}
+
   ngOnInit(): void {
-    this.initializeChart();
-    this.initializePieChart();
+    this.loadChartData();
   }
 
-  private initializeChart(): void {
+  private loadChartData(): void {
+    this.http.get<{ name: string, value: number, year: number }[]>('/api/users/chart-data')
+      .subscribe(data => {
+        this.initializeChart(data);
+        this.initializePieChart(data);
+      });
+  }
+
+  private initializeChart(data: { name: string, value: number, year: number }[]): void {
     const chartDom = document.getElementById('LineChart')!;
     const myChart = echarts.init(chartDom);
+
+    const years = Array.from(new Set(data.map(item => item.year)));
+    const platforms = Array.from(new Set(data.map(item => item.name)));
+
+    const series = years.map(year => ({
+      name: String(year),
+      type: 'line',
+      stack: 'Total',
+      data: platforms.map(platform => {
+        const item = data.find(d => d.name === platform && d.year === year);
+        return item ? item.value : 0;
+      })
+    })) as EChartsOption['series'];
+
     const option: EChartsOption = {
       title: {
         text: 'Stacked Line'
@@ -26,7 +50,7 @@ export class RegisterComponent implements OnInit {
         trigger: 'axis'
       },
       legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        data: years.map(String)
       },
       grid: {
         left: '3%',
@@ -42,55 +66,25 @@ export class RegisterComponent implements OnInit {
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: platforms
       },
       yAxis: {
         type: 'value'
       },
-      series: [
-        {
-          name: 'Email',
-          type: 'line',
-          stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: 'Union Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: 'Video Ads',
-          type: 'line',
-          stack: 'Total',
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
-        }
-      ]
+      series: series
     };
 
     option && myChart.setOption(option);
   }
 
-  private initializePieChart(): void {
+  private initializePieChart(data: { name: string, value: number }[]): void {
     const chartDom = document.getElementById('pieChart')!;
     const myChart = echarts.init(chartDom);
+
     const option: EChartsOption = {
       title: {
         text: 'Referer of a Website',
-        subtext: 'Fake Data',
+        subtext: 'Real Data',
         left: 'center'
       },
       tooltip: {
@@ -105,13 +99,7 @@ export class RegisterComponent implements OnInit {
           name: 'Access From',
           type: 'pie',
           radius: '50%',
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
-          ],
+          data: data.map(item => ({ value: item.value, name: item.name })),
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
