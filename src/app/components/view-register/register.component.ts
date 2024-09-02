@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as echarts from 'echarts';
+import { RegisterService } from 'src/app/services/register.service';
 
 type EChartsOption = echarts.EChartsOption;
 
@@ -11,14 +12,14 @@ type EChartsOption = echarts.EChartsOption;
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private registerService: RegisterService) {}
 
   ngOnInit(): void {
     this.loadChartData();
   }
 
   private loadChartData(): void {
-    this.http.get<{ name: string, value: number, year: number }[]>('/api/users/chart-data')
+    this.registerService.getChartData()
       .subscribe(data => {
         this.initializeChart(data);
         this.initializePieChart(data);
