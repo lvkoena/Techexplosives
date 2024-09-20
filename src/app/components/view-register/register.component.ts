@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] 
+            data: ['January', 'February', 'March', 'April', 'May', 'June', 'July'] 
           },
           yAxis: {
             type: 'value'
