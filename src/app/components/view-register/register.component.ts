@@ -15,20 +15,13 @@ export class RegisterComponent implements OnInit {
 
   constructor(private registerService: RegisterService) {}
 
-  // ngAfterViewInit(): void {
-  //   this.lineChart();
-  // }
-
   ngOnInit(): void {
     this.registerService.getChartData().subscribe((data: ChartData[]) => {
-      // Prepare data for pie chart
       const pieChartData = data.map(item => ({
         value: item.data[0], 
         name: item.name
       }));
       this.initializePieChart(pieChartData);
-      
-      // Prepare data for line chart
       this.lineChart();
     });
   }
