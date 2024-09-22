@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
 
     const option: EChartsOption = {
       title: {
-        text: 'Referer of a Website',
+        text: 'Charts',
         subtext: 'Echarts Data',
         left: 'center'
       },
