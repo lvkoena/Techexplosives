@@ -17,6 +17,5 @@ export class LoginService {
     };
 
     return this.http.get(this.apiUrl);
-
   }
 }
