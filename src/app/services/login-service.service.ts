@@ -32,12 +32,8 @@ export class LoginServiceService {
     }
 
     logout() {
-        // Perform logout logic, e.g., clearing session data
-        // Once logout is completed, set loggedIn$ to false
-
         this.loggedInUserSubject.next(null);
         this.loggedIn$.next(false);
-        // this.CartService.clearCart();
         this.router.navigate([""]);
     }
 }
