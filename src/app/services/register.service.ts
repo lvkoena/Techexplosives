@@ -14,5 +14,4 @@ export class RegisterService {
   getChartData(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/all`);
   }
-
 }
