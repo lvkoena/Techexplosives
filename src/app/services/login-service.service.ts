@@ -19,10 +19,6 @@ export class LoginServiceService {
     }
 
     login(email: string, password: string) {
-        // Perform login logic, e.g., making an API call
-        // Once login is successful, set loggedIn$ to true
-
-        // Make an API request to fetch the user data
         this.http.get<any>('http://localhost:3000/profile').subscribe(users => {
             const matchingUser = users.find((user: { email: string; password: string; }) => user.email === email && user.password === password);
             if (matchingUser) {
