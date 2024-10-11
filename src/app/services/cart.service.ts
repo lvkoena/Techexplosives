@@ -10,7 +10,6 @@ export class CartService {
   private cartItemCountSubject = new BehaviorSubject<number>(0);
 
   constructor() {
-    //Load cart data from localStorage during service initialization
     this.loadCartData();
   }
 
