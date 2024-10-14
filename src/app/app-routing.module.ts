@@ -11,7 +11,6 @@ import { ViewProfileComponent } from './components/view-profile/view-profile.com
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
