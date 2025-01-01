@@ -10,7 +10,7 @@ import { CheckoutComponent } from './components/view-checkout/checkout/checkout.
 import { ViewProfileComponent } from './components/view-profile/view-profile.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
